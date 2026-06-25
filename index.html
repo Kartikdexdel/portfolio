@@ -1,1447 +1,723 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kartik Saini | Frontend Developer</title>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #060816;
-      color: #ffffff;
-      overflow-x: hidden;
-    }
-
-    ::selection {
-      background: #00e5ff;
-      color: #050816;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(0, 229, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 85% 25%, rgba(153, 69, 255, 0.22), transparent 30%),
-        radial-gradient(circle at 50% 85%, rgba(255, 61, 142, 0.16), transparent 35%);
-      z-index: -3;
-    }
-
-    .glow {
-      position: fixed;
-      width: 420px;
-      height: 420px;
-      background: linear-gradient(135deg, #00e5ff, #8b5cf6, #ff3d8e);
-      filter: blur(120px);
-      opacity: 0.35;
-      border-radius: 50%;
-      animation: glowMove 14s infinite alternate ease-in-out;
-      z-index: -2;
-    }
-
-    @keyframes glowMove {
-      from {
-        top: 5%;
-        left: -5%;
-      }
-      to {
-        top: 45%;
-        left: 70%;
-      }
-    }
-
-    .grid-bg {
-      position: fixed;
-      inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 55px 55px;
-      mask-image: linear-gradient(to bottom, black, transparent);
-      z-index: -1;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1180px, 90%);
-      margin: auto;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 999;
-      background: rgba(6, 8, 22, 0.72);
-      backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(255,255,255,0.09);
-    }
-
-    .nav-inner {
-      width: min(1180px, 90%);
-      margin: auto;
-      height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 26px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-    }
-
-    .logo span {
-      color: #00e5ff;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: #d1d5db;
-      font-size: 15px;
-      transition: 0.3s;
-    }
-
-    .nav-links a:hover {
-      color: #00e5ff;
-    }
-
-    .nav-btn {
-      padding: 10px 18px;
-      border-radius: 30px;
-      background: linear-gradient(90deg, #00e5ff, #8b5cf6);
-      color: white !important;
-      font-weight: 700;
-      box-shadow: 0 0 25px rgba(0,229,255,0.28);
-    }
-
-    .menu-btn {
-      display: none;
-      font-size: 28px;
-      cursor: pointer;
-    }
-
-    .hero {
-      min-height: 100vh;
-      padding: 145px 0 80px;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      align-items: center;
-      gap: 55px;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      padding: 10px 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(16px);
-      border-radius: 999px;
-      color: #d1d5db;
-      margin-bottom: 22px;
-      font-size: 14px;
-    }
-
-    .badge span {
-      width: 9px;
-      height: 9px;
-      background: #22c55e;
-      border-radius: 50%;
-      box-shadow: 0 0 18px #22c55e;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 7vw, 76px);
-      line-height: 1.05;
-      margin-bottom: 22px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #00e5ff, #8b5cf6, #ff3d8e);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .typing {
-      font-size: clamp(22px, 3vw, 31px);
-      color: #e5e7eb;
-      margin-bottom: 24px;
-      min-height: 42px;
-      font-weight: 700;
-    }
-
-    .typing span {
-      color: #00e5ff;
-      border-right: 2px solid #00e5ff;
-      padding-right: 5px;
-      animation: blink 0.7s infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        border-color: transparent;
-      }
-    }
-
-    .hero p {
-      color: #aeb4c5;
-      line-height: 1.85;
-      font-size: 17px;
-      max-width: 690px;
-      margin-bottom: 34px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 34px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 14px 24px;
-      border-radius: 999px;
-      font-weight: 800;
-      transition: 0.35s;
-    }
-
-    .btn-primary {
-      background: linear-gradient(90deg, #00e5ff, #8b5cf6);
-      color: white;
-      box-shadow: 0 12px 35px rgba(0,229,255,0.28);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 45px rgba(0,229,255,0.45);
-    }
-
-    .btn-secondary {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.14);
-      color: #ffffff;
-    }
-
-    .btn-secondary:hover {
-      border-color: #00e5ff;
-      color: #00e5ff;
-      transform: translateY(-5px);
-    }
-
-    .mini-stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      max-width: 590px;
-    }
-
-    .mini-stat {
-      padding: 18px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.11);
-      backdrop-filter: blur(14px);
-    }
-
-    .mini-stat h3 {
-      font-size: 28px;
-      color: #00e5ff;
-      margin-bottom: 4px;
-    }
-
-    .mini-stat p {
-      font-size: 13px;
-      margin: 0;
-      color: #b6bdd0;
-      line-height: 1.5;
-    }
-
-    .hero-card-wrap {
-      display: flex;
-      justify-content: center;
-      position: relative;
-    }
-
-    .orbit {
-      position: absolute;
-      width: 390px;
-      height: 390px;
-      border: 1px dashed rgba(0,229,255,0.26);
-      border-radius: 50%;
-      animation: rotate 15s linear infinite;
-      top: 20px;
-    }
-
-    @keyframes rotate {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    .orbit span {
-      position: absolute;
-      width: 54px;
-      height: 54px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.14);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      color: #00e5ff;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.25);
-    }
-
-    .orbit span:nth-child(1) {
-      top: 0;
-      left: 50%;
-    }
-
-    .orbit span:nth-child(2) {
-      bottom: 40px;
-      right: 10px;
-    }
-
-    .orbit span:nth-child(3) {
-      bottom: 40px;
-      left: 10px;
-    }
-
-    .profile-card {
-      width: 350px;
-      min-height: 455px;
-      border-radius: 34px;
-      padding: 34px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05));
-      border: 1px solid rgba(255,255,255,0.17);
-      backdrop-filter: blur(22px);
-      box-shadow: 0 35px 90px rgba(0,0,0,0.38);
-      position: relative;
-      overflow: hidden;
-      animation: float 4.5s ease-in-out infinite;
-      z-index: 2;
-    }
-
-    .profile-card::before {
-      content: "";
-      position: absolute;
-      width: 210px;
-      height: 210px;
-      background: linear-gradient(135deg, #00e5ff, #8b5cf6);
-      border-radius: 50%;
-      top: -75px;
-      right: -75px;
-      opacity: 0.6;
-    }
-
-    .profile-card::after {
-      content: "";
-      position: absolute;
-      width: 190px;
-      height: 190px;
-      background: linear-gradient(135deg, #ff3d8e, #8b5cf6);
-      border-radius: 50%;
-      bottom: -70px;
-      left: -70px;
-      opacity: 0.45;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-22px);
-      }
-    }
-
-    .avatar {
-      width: 145px;
-      height: 145px;
-      margin: 18px auto 22px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #00e5ff, #8b5cf6, #ff3d8e);
-      font-size: 54px;
-      font-weight: 950;
-      box-shadow: 0 0 50px rgba(0,229,255,0.4);
-      position: relative;
-      z-index: 2;
-    }
-
-    .profile-card h2,
-    .profile-card p,
-    .profile-tags {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-    }
-
-    .profile-card h2 {
-      font-size: 31px;
-      margin-bottom: 8px;
-    }
-
-    .profile-card p {
-      color: #cfd6e8;
-      line-height: 1.6;
-    }
-
-    .profile-tags {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 9px;
-      margin-top: 24px;
-    }
-
-    .profile-tags span {
-      padding: 8px 11px;
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.13);
-      border-radius: 999px;
-      color: #e5e7eb;
-      font-size: 13px;
-    }
-
-    section {
-      padding: 95px 0;
-    }
-
-    .section-head {
-      text-align: center;
-      max-width: 720px;
-      margin: 0 auto 58px;
-    }
-
-    .section-head .sub {
-      color: #00e5ff;
-      font-weight: 800;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-
-    .section-head h2 {
-      font-size: clamp(32px, 5vw, 48px);
-      margin-bottom: 16px;
-    }
-
-    .section-head p {
-      color: #aeb4c5;
-      line-height: 1.8;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
-      gap: 26px;
-      align-items: stretch;
-    }
-
-    .glass {
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(18px);
-      border-radius: 26px;
-      box-shadow: 0 20px 70px rgba(0,0,0,0.22);
-    }
-
-    .about-text {
-      padding: 34px;
-    }
-
-    .about-text h3 {
-      font-size: 28px;
-      margin-bottom: 16px;
-      color: #ffffff;
-    }
-
-    .about-text p {
-      color: #b8bfce;
-      line-height: 1.9;
-      margin-bottom: 18px;
-    }
-
-    .info-list {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 22px;
-    }
-
-    .info-item {
-      padding: 16px;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .info-item b {
-      display: block;
-      color: #00e5ff;
-      margin-bottom: 5px;
-    }
-
-    .info-item span {
-      color: #d4d8e5;
-      font-size: 14px;
-    }
-
-    .experience-box {
-      padding: 34px;
-    }
-
-    .experience-box h3 {
-      font-size: 26px;
-      margin-bottom: 24px;
-    }
-
-    .timeline {
-      position: relative;
-      padding-left: 24px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      left: 7px;
-      top: 4px;
-      height: calc(100% - 8px);
-      width: 2px;
-      background: linear-gradient(#00e5ff, #8b5cf6, #ff3d8e);
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 26px;
-    }
-
-    .timeline-item::before {
-      content: "";
-      position: absolute;
-      left: -23px;
-      top: 5px;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #00e5ff;
-      box-shadow: 0 0 18px #00e5ff;
-    }
-
-    .timeline-item h4 {
-      font-size: 18px;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .timeline-item span {
-      color: #00e5ff;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .timeline-item p {
-      color: #b8bfce;
-      line-height: 1.7;
-      margin-top: 8px;
-    }
-
-    .skills-wrap {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 22px;
-    }
-
-    .skill-box {
-      padding: 24px;
-      transition: 0.35s;
-    }
-
-    .skill-box:hover,
-    .service-card:hover,
-    .project-card:hover {
-      transform: translateY(-10px);
-      border-color: rgba(0,229,255,0.55);
-      box-shadow: 0 24px 65px rgba(0,229,255,0.11);
-    }
-
-    .skill-top {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 12px;
-      font-weight: 800;
-    }
-
-    .skill-top span:last-child {
-      color: #00e5ff;
-    }
-
-    .bar {
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.1);
-      overflow: hidden;
-    }
-
-    .bar i {
-      display: block;
-      height: 100%;
-      width: var(--w);
-      background: linear-gradient(90deg, #00e5ff, #8b5cf6, #ff3d8e);
-      border-radius: inherit;
-      animation: fillBar 1.8s ease both;
-    }
-
-    @keyframes fillBar {
-      from {
-        width: 0;
-      }
-      to {
-        width: var(--w);
-      }
-    }
-
-    .services-grid,
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-    }
-
-    .service-card,
-    .project-card {
-      padding: 28px;
-      transition: 0.35s;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .service-card .icon {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(0,229,255,0.22), rgba(139,92,246,0.2));
-      color: #00e5ff;
-      font-size: 28px;
-      margin-bottom: 20px;
-    }
-
-    .service-card h3,
-    .project-card h3 {
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
-
-    .service-card p,
-    .project-card p {
-      color: #b8bfce;
-      line-height: 1.8;
-    }
-
-    .project-thumb {
-      height: 175px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      background:
-        linear-gradient(135deg, rgba(0,229,255,0.8), rgba(139,92,246,0.72), rgba(255,61,142,0.72)),
-        linear-gradient(45deg, #111827, #1f2937);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .project-thumb::before {
-      content: "";
-      position: absolute;
-      inset: 22px;
-      border-radius: 16px;
-      background: rgba(6,8,22,0.55);
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-
-    .project-thumb::after {
-      content: attr(data-title);
-      position: absolute;
-      left: 34px;
-      bottom: 32px;
-      font-weight: 900;
-      font-size: 23px;
-    }
-
-    .project-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 18px;
-    }
-
-    .project-tags span {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: #d8dce8;
-      font-size: 12px;
-    }
-
-    .project-link {
-      display: inline-block;
-      margin-top: 20px;
-      color: #00e5ff;
-      font-weight: 800;
-    }
-
-    .cta {
-      padding: 48px;
-      border-radius: 32px;
-      text-align: center;
-      background:
-        linear-gradient(135deg, rgba(0,229,255,0.12), rgba(139,92,246,0.13), rgba(255,61,142,0.11)),
-        rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.13);
-    }
-
-    .cta h2 {
-      font-size: clamp(30px, 5vw, 48px);
-      margin-bottom: 16px;
-    }
-
-    .cta p {
-      color: #b8bfce;
-      max-width: 720px;
-      margin: 0 auto 28px;
-      line-height: 1.8;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 24px;
-    }
-
-    .contact-info,
-    .contact-form {
-      padding: 32px;
-    }
-
-    .contact-row {
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.09);
-      margin-bottom: 14px;
-    }
-
-    .contact-row .ci {
-      width: 46px;
-      height: 46px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: rgba(0,229,255,0.12);
-      color: #00e5ff;
-      font-size: 21px;
-    }
-
-    .contact-row b {
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .contact-row span {
-      color: #b8bfce;
-      font-size: 14px;
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 15px 16px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.11);
-      border-radius: 16px;
-      color: white;
-      outline: none;
-      font-size: 15px;
-    }
-
-    input:focus,
-    textarea:focus {
-      border-color: #00e5ff;
-    }
-
-    textarea {
-      margin-top: 14px;
-      min-height: 135px;
-      resize: vertical;
-    }
-
-    .contact-form .btn {
-      border: none;
-      margin-top: 14px;
-      cursor: pointer;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      color: #aeb4c5;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      background: rgba(0,0,0,0.22);
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(45px);
-      transition: 0.9s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @media (max-width: 950px) {
-      .menu-btn {
-        display: block;
-      }
-
-      .nav-links {
-        position: absolute;
-        top: 76px;
-        left: 0;
-        width: 100%;
-        padding: 22px;
-        flex-direction: column;
-        background: rgba(6,8,22,0.95);
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-        display: none;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .hero,
-      .about-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        text-align: center;
-      }
-
-      .hero p {
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .hero-actions {
-        justify-content: center;
-      }
-
-      .mini-stats {
-        margin: auto;
-      }
-
-      .orbit {
-        display: none;
-      }
-
-      .services-grid,
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .skills-wrap {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 560px) {
-      .mini-stats,
-      .info-list,
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .profile-card {
-        width: 100%;
-      }
-
-      .cta {
-        padding: 32px 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="glow"></div>
-  <div class="grid-bg"></div>
-
-  <nav>
-    <div class="nav-inner">
-      <a href="#home" class="logo">Kartik<span>Saini</span></a>
-
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact" class="nav-btn">Hire Me</a></li>
-      </ul>
-
-      <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    </div>
-  </nav>
-
-  <main>
-    <section class="hero container" id="home">
-      <div class="hero-content reveal">
-        <div class="badge"><span></span> Available for freelance & frontend projects</div>
-
-        <h1>
-          Hi, I'm <br />
-          <span class="gradient-text">Kartik Saini</span>
-        </h1>
-
-        <div class="typing">
-          I build <span id="typed-text"></span>
-        </div>
-
-        <p>
-          Frontend Developer with 3+ years of experience in creating responsive websites,
-          modern UI layouts, Shopify stores, WordPress websites and React-based interfaces.
-          I focus on clean design, smooth animations and user-friendly web experiences.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary">View My Work →</a>
-          <a href="#contact" class="btn btn-secondary">Let's Talk</a>
-        </div>
-
-        <div class="mini-stats">
-          <div class="mini-stat">
-            <h3>3+</h3>
-            <p>Years Experience</p>
-          </div>
-          <div class="mini-stat">
-            <h3>25+</h3>
-            <p>Projects Completed</p>
-          </div>
-          <div class="mini-stat">
-            <h3>15+</h3>
-            <p>Happy Clients</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-card-wrap reveal">
-        <div class="orbit">
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>JS</span>
-        </div>
-
-        <div class="profile-card">
-          <div class="avatar">KS</div>
-          <h2>Kartik Saini</h2>
-          <p>Frontend Developer</p>
-          <p>HTML • CSS • Bootstrap • React • WordPress • Shopify</p>
-
-          <div class="profile-tags">
-            <span>Responsive UI</span>
-            <span>Modern Design</span>
-            <span>Animation</span>
-            <span>E-commerce</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="sub">About Me</p>
-          <h2>Creative Frontend Developer for Modern Websites</h2>
-          <p>
-            I convert ideas into clean, attractive and high-performing websites.
-          </p>
-        </div>
-
-        <div class="about-grid">
-          <div class="about-text glass reveal">
-            <h3>Who am I?</h3>
-            <p>
-              My name is Kartik Saini. I am a Frontend Developer with 3+ years of experience
-              in website design and development. I work with HTML, CSS, Bootstrap, JavaScript,
-              React, WordPress, Shopify and basic Photoshop.
-            </p>
-            <p>
-              I enjoy creating beautiful landing pages, portfolio websites, business websites,
-              e-commerce pages and responsive layouts. My goal is to build websites that look
-              professional, load fast and work perfectly on mobile, tablet and desktop.
-            </p>
-
-            <div class="info-list">
-              <div class="info-item">
-                <b>Name</b>
-                <span>Kartik Saini</span>
-              </div>
-              <div class="info-item">
-                <b>Experience</b>
-                <span>3+ Years</span>
-              </div>
-              <div class="info-item">
-                <b>Role</b>
-                <span>Frontend Developer</span>
-              </div>
-              <div class="info-item">
-                <b>Location</b>
-                <span>India</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="experience-box glass reveal">
-            <h3>Experience Journey</h3>
-
-            <div class="timeline">
-              <div class="timeline-item">
-                <h4>Frontend Developer</h4>
-                <span>2023 - Present</span>
-                <p>
-                  Building responsive websites, landing pages, React UI components and modern portfolio layouts.
-                </p>
-              </div>
-
-              <div class="timeline-item">
-                <h4>WordPress & Shopify Designer</h4>
-                <span>2022 - 2023</span>
-                <p>
-                  Designed business websites, e-commerce stores, product pages and customized themes.
-                </p>
-              </div>
-
-              <div class="timeline-item">
-                <h4>Web Design Learner</h4>
-                <span>2021 - 2022</span>
-                <p>
-                  Started with HTML, CSS, Bootstrap, basic Photoshop and responsive web design.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="skills">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="sub">My Skills</p>
-          <h2>Tools & Technologies I Work With</h2>
-          <p>
-            These are my main skills for frontend development, design and website building.
-          </p>
-        </div>
-
-        <div class="skills-wrap">
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>HTML5 / Semantic Structure</span><span>95%</span></div>
-            <div class="bar"><i style="--w:95%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>CSS3 / Animations / Responsive</span><span>92%</span></div>
-            <div class="bar"><i style="--w:92%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>Bootstrap / Layout System</span><span>88%</span></div>
-            <div class="bar"><i style="--w:88%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>JavaScript Basics</span><span>78%</span></div>
-            <div class="bar"><i style="--w:78%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>React UI Development</span><span>75%</span></div>
-            <div class="bar"><i style="--w:75%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>WordPress / Shopify</span><span>85%</span></div>
-            <div class="bar"><i style="--w:85%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>Basic Photoshop</span><span>70%</span></div>
-            <div class="bar"><i style="--w:70%"></i></div>
-          </div>
-
-          <div class="skill-box glass reveal">
-            <div class="skill-top"><span>GitHub Pages / Deployment</span><span>80%</span></div>
-            <div class="bar"><i style="--w:80%"></i></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="sub">Services</p>
-          <h2>What I Can Do For You</h2>
-          <p>
-            I create websites that are attractive, responsive and easy to use.
-          </p>
-        </div>
-
-        <div class="services-grid">
-          <div class="service-card glass reveal">
-            <div class="icon">💻</div>
-            <h3>Frontend Development</h3>
-            <p>
-              Responsive websites using HTML, CSS, Bootstrap, JavaScript and React with clean code structure.
-            </p>
-          </div>
-
-          <div class="service-card glass reveal">
-            <div class="icon">🎨</div>
-            <h3>Website UI Design</h3>
-            <p>
-              Modern UI sections, hero banners, cards, animations, landing pages and professional layouts.
-            </p>
-          </div>
-
-          <div class="service-card glass reveal">
-            <div class="icon">🛒</div>
-            <h3>Shopify Store Design</h3>
-            <p>
-              Product pages, homepage sections, collection layouts and attractive e-commerce design.
-            </p>
-          </div>
-
-          <div class="service-card glass reveal">
-            <div class="icon">🌐</div>
-            <h3>WordPress Websites</h3>
-            <p>
-              Business websites, portfolio websites, service pages and blog-style website layouts.
-            </p>
-          </div>
-
-          <div class="service-card glass reveal">
-            <div class="icon">📱</div>
-            <h3>Responsive Design</h3>
-            <p>
-              Mobile-first websites that look perfect on phone, tablet, laptop and desktop screens.
-            </p>
-          </div>
-
-          <div class="service-card glass reveal">
-            <div class="icon">⚡</div>
-            <h3>Website Optimization</h3>
-            <p>
-              Clean layout, fast loading design, better user experience and professional website presentation.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="sub">Portfolio</p>
-          <h2>Featured Dummy Projects</h2>
-          <p>
-            These project cards are dummy samples. Later you can replace them with your real project links.
-          </p>
-        </div>
-
-        <div class="projects-grid">
-          <div class="project-card glass reveal">
-            <div class="project-thumb" data-title="Shopify Store"></div>
-            <h3>Fashion Shopify Store</h3>
-            <p>
-              A modern e-commerce store layout with product sections, banner design, collection cards and mobile responsive UI.
-            </p>
-            <div class="project-tags">
-              <span>Shopify</span>
-              <span>CSS</span>
-              <span>E-commerce</span>
-            </div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-
-          <div class="project-card glass reveal">
-            <div class="project-thumb" data-title="React UI"></div>
-            <h3>React Admin Dashboard</h3>
-            <p>
-              A clean dashboard UI with cards, charts area, sidebar layout, responsive structure and reusable components.
-            </p>
-            <div class="project-tags">
-              <span>React</span>
-              <span>JavaScript</span>
-              <span>UI Design</span>
-            </div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-
-          <div class="project-card glass reveal">
-            <div class="project-thumb" data-title="WordPress"></div>
-            <h3>Business WordPress Website</h3>
-            <p>
-              A professional business website concept with service sections, about area, contact CTA and clean homepage.
-            </p>
-            <div class="project-tags">
-              <span>WordPress</span>
-              <span>Elementor</span>
-              <span>Responsive</span>
-            </div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-
-          <div class="project-card glass reveal">
-            <div class="project-thumb" data-title="Landing Page"></div>
-            <h3>Digital Agency Landing Page</h3>
-            <p>
-              Animated landing page design for an agency with hero section, service cards, portfolio grid and CTA.
-            </p>
-            <div class="project-tags">
-              <span>HTML</span>
-              <span>CSS</span>
-              <span>Animation</span>
-            </div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-
-          <div class="project-card glass reveal">
-            <div class="project-thumb" data-title="Portfolio"></div>
-            <h3>Personal Portfolio Website</h3>
-            <p>
-              A professional animated portfolio website hosted on GitHub Pages with modern glassmorphism design.
-            </p>
-            <div class="project-tags">
-              <span>GitHub Pages</span>
-              <span>Portfolio</span>
-              <span>Frontend</span>
-            </div>
-            <a href="https://kartikdexdel.github.io/portfolio/" class="project-link">View Project →</a>
-          </div>
-
-          <div class="project-card glass reveal">
-            <div class="project-thumb" data-title="Product Page"></div>
-            <h3>E-commerce Product Page</h3>
-            <p>
-              Product detail page UI with image area, pricing section, feature list, CTA buttons and responsive layout.
-            </p>
-            <div class="project-tags">
-              <span>Bootstrap</span>
-              <span>CSS</span>
-              <span>Product UI</span>
-            </div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="cta reveal">
-          <h2>Have a project in mind?</h2>
-          <p>
-            I can help you build a modern website, portfolio, landing page, Shopify store,
-            WordPress website or responsive frontend layout.
-          </p>
-          <a href="#contact" class="btn btn-primary">Start a Project →</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head reveal">
-          <p class="sub">Contact</p>
-          <h2>Let's Work Together</h2>
-          <p>
-            Fill this section with your real email, phone and social links.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-          <div class="contact-info glass reveal">
-            <div class="contact-row">
-              <div class="ci">📧</div>
-              <div>
-                <b>Email</b>
-                <span>kartiksaini@example.com</span>
-              </div>
-            </div>
-
-            <div class="contact-row">
-              <div class="ci">📱</div>
-              <div>
-                <b>Phone</b>
-                <span>+91 98765 43210</span>
-              </div>
-            </div>
-
-            <div class="contact-row">
-              <div class="ci">📍</div>
-              <div>
-                <b>Location</b>
-                <span>India</span>
-              </div>
-            </div>
-
-            <div class="contact-row">
-              <div class="ci">🔗</div>
-              <div>
-                <b>GitHub</b>
-                <span>github.com/Kartikdexdel</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-form glass reveal">
-            <form onsubmit="sendMessage(event)">
-              <div class="form-grid">
-                <input type="text" placeholder="Your Name" required />
-                <input type="email" placeholder="Your Email" required />
-              </div>
-              <textarea placeholder="Your Message" required></textarea>
-              <button class="btn btn-primary" type="submit">Send Message →</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Kartik Saini. All Rights Reserved. Built with HTML, CSS & JavaScript.</p>
-  </footer>
-
-  <script>
-    const words = [
-      "modern websites.",
-      "responsive landing pages.",
-      "Shopify store designs.",
-      "WordPress websites.",
-      "React user interfaces."
-    ];
-
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typedText = document.getElementById("typed-text");
-
-    function typeEffect() {
-      const currentWord = words[wordIndex];
-
-      if (isDeleting) {
-        typedText.textContent = currentWord.substring(0, charIndex--);
-      } else {
-        typedText.textContent = currentWord.substring(0, charIndex++);
-      }
-
-      if (!isDeleting && charIndex === currentWord.length + 1) {
-        isDeleting = true;
-        setTimeout(typeEffect, 1200);
-        return;
-      }
-
-      if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-      }
-
-      setTimeout(typeEffect, isDeleting ? 55 : 95);
-    }
-
-    typeEffect();
-
-    const reveals = document.querySelectorAll(".reveal");
-
-    function revealOnScroll() {
-      reveals.forEach((item) => {
-        const windowHeight = window.innerHeight;
-        const revealTop = item.getBoundingClientRect().top;
-        const revealPoint = 120;
-
-        if (revealTop < windowHeight - revealPoint) {
-          item.classList.add("active");
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartik Saini | Senior Frontend Developer & CMS Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { bg: '#090d16', card: '#111827', primary: '#3b82f6', accent: '#a855f7' }
+                    }
+                }
+            }
         }
-      });
-    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#090d16] text-slate-100 font-sans overflow-x-hidden selection:bg-purple-500 selection:text-white">
 
-    window.addEventListener("scroll", revealOnScroll);
-    window.addEventListener("load", revealOnScroll);
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#090d16]/70 custom-blur border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-tighter uppercase">
+                Kartik<span class="text-blue-500">.</span>Saini
+            </a>
+            <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-slate-400">
+                <a href="#home" class="hover:text-white transition duration-300">Home</a>
+                <a href="#experience" class="hover:text-white transition duration-300">Experience</a>
+                <a href="#services" class="hover:text-white transition duration-300">Services</a>
+                <a href="#skills" class="hover:text-white transition duration-300">Skills</a>
+                <a href="#projects" class="hover:text-white transition duration-300">Portfolio</a>
+                <a href="#testimonials" class="hover:text-white transition duration-300">Reviews</a>
+                <a href="#faqs" class="hover:text-white transition duration-300">FAQs</a>
+            </nav>
+            <div class="hidden lg:block">
+                <a href="#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 shadow-lg shadow-blue-500/10 transition">
+                    Hire Developer
+                </a>
+            </div>
+        </div>
+    </header>
 
-    function toggleMenu() {
-      document.getElementById("navLinks").classList.toggle("show");
-    }
+    <section id="home" class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
+        <div id="particles-js"></div>
+        <div class="max-w-5xl mx-auto px-6 text-center z-10 pointer-events-auto">
+            <div data-aos="fade-down" class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-full px-4 py-1.5 text-xs text-blue-400 font-mono mb-6">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Available for Global Remote Work
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-5xl md:text-8xl font-black tracking-tight mb-8 leading-none">
+                Building Modern <br><span class="gradient-text">Digital Masterpieces</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Hi, I'm Kartik. A <strong>Frontend Engineer with 3+ years of battle-tested experience</strong> converting complex logic into super-fast React, WordPress, and Shopify solutions.
+            </p>
+            <div data-aos="zoom-in" data-aos-delay="300" class="flex flex-wrap justify-center gap-4">
+                <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-blue-600/20 transition transform hover:-translate-y-1">Explore Full Portfolio</a>
+                <a href="#contact" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-white font-bold px-8 py-4 rounded-xl transition transform hover:-translate-y-1">Get Free Strategy Call</a>
+            </div>
+        </div>
+    </section>
 
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", () => {
-        document.getElementById("navLinks").classList.remove("show");
-      });
-    });
+    <section id="experience" class="py-32 bg-[#060a12] border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-purple-400 font-mono text-sm tracking-wider uppercase block mb-3">My Journey</span>
+                <h2 class="text-4xl md:text-5xl font-black">3 Years of Industry <span class="gradient-text">Impact</span></h2>
+            </div>
+            
+            <div class="relative border-l-2 border-slate-800 max-w-3xl mx-auto pl-8 space-y-12">
+                <div class="relative" data-aos="fade-left">
+                    <div class="absolute -left-[41px] top-0 bg-blue-600 w-5 h-5 rounded-full border-4 border-[#060a12]"></div>
+                    <span class="text-sm font-mono text-blue-400">2024 - Present</span>
+                    <h3 class="text-2xl font-bold mt-1 text-white">Senior Frontend & CMS Lead</h3>
+                    <p class="text-slate-400 mt-2">Managing large-scale enterprise projects. Optimized production architectures using React.js and established scalable e-commerce infrastructures on Shopify Plus.</p>
+                </div>
+                <div class="relative" data-aos="fade-left" data-aos-delay="100">
+                    <div class="absolute -left-[41px] top-0 bg-purple-600 w-5 h-5 rounded-full border-4 border-[#060a12]"></div>
+                    <span class="text-sm font-mono text-purple-400">2023 - 2024</span>
+                    <h3 class="text-2xl font-bold mt-1 text-white">Full-Stack Web Consultant</h3>
+                    <p class="text-slate-400 mt-2">Specialized in custom WordPress layouts, WooCommerce engines, server administration, and hosting optimization platforms (AWS/Cpanel).</p>
+                </div>
+                <div class="relative" data-aos="fade-left" data-aos-delay="200">
+                    <div class="absolute -left-[41px] top-0 bg-pink-600 w-5 h-5 rounded-full border-4 border-[#060a12]"></div>
+                    <span class="text-sm font-mono text-pink-400">2022 - 2023</span>
+                    <h3 class="text-2xl font-bold mt-1 text-white">UI Developer & Graphic Expert</h3>
+                    <p class="text-slate-400 mt-2">Started with pixel-perfect responsive web designs using HTML5, CSS3, Bootstrap, and UI asset designing inside Adobe Photoshop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    function sendMessage(event) {
-      event.preventDefault();
-      alert("Thanks! This is a demo contact form. Add real backend or Formspree later.");
-    }
-  </script>
+    <section id="services" class="py-32 bg-[#090d16]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center mb-20">
+                <div class="lg:col-span-1" data-aos="fade-right">
+                    <span class="text-blue-400 font-mono text-sm uppercase block mb-3">Capabilities</span>
+                    <h2 class="text-4xl font-black mb-6">Solutions that scale your business.</h2>
+                    <p class="text-slate-400">I bridge the gap between design and high-performance server architectures.</p>
+                </div>
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up">
+                        <i class="fa-brands fa-react text-blue-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">React Web Apps</h3>
+                        <p class="text-slate-400 text-sm">State management, reusable modular architecture, and single-page apps execution.</p>
+                    </div>
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-brands fa-shopify text-green-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">E-Commerce Ecosystems</h3>
+                        <p class="text-slate-400 text-sm">High-converting shopify storefronts, dynamic liquid engineering, payment setup.</p>
+                    </div>
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-brands fa-wordpress text-sky-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">CMS Architecture</h3>
+                        <p class="text-slate-400 text-sm">Custom theme setups, complex multisite configurations, heavy plugin optimizations.</p>
+                    </div>
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fa-solid fa-server text-purple-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Hosting & Migration</h3>
+                        <p class="text-slate-400 text-sm">Server controls, Domain routing, SSL protocols management, zero-downtime migrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-[#060a12]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black">Technical <span class="gradient-text">Proficiency</span></h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-blue-500 transition" data-aos="zoom-in"><i class="fa-brands fa-html5 text-orange-500 text-3xl"></i><strong>HTML5 / CSS3</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-purple-500 transition" data-aos="zoom-in" data-aos-delay="500"><i class="fa-brands fa-bootstrap text-purple-500 text-3xl"></i><strong>Bootstrap / Tailwind</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-cyan-400 transition" data-aos="zoom-in" data-aos-delay="1500"><i class="fa-brands fa-react text-cyan-400 text-3xl"></i><strong>React JS</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-blue-400 transition" data-aos="zoom-in" data-aos-delay="200"><i class="fa-brands fa-wordpress text-blue-400 text-3xl"></i><strong>WordPress</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-green-500 transition" data-aos="zoom-in" data-aos-delay="250"><i class="fa-brands fa-shopify text-green-500 text-3xl"></i><strong>Shopify Stores</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-blue-500 transition" data-aos="zoom-in" data-aos-delay="300"><i class="fa-solid fa-palette text-blue-400 text-3xl"></i><strong>Photoshop Design</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-indigo-400 transition" data-aos="zoom-in" data-aos-delay="350"><i class="fa-solid fa-server text-indigo-400 text-3xl"></i><strong>Hosting Handling</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-yellow-400 transition" data-aos="zoom-in" data-aos-delay="400"><i class="fa-solid fa-gauge-high text-yellow-400 text-3xl"></i><strong>Core Optimization</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 bg-[#090d16]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20" data-aos="fade-up">
+                <div>
+                    <span class="text-blue-400 font-mono text-sm uppercase block mb-3">Case Studies</span>
+                    <h2 class="text-4xl md:text-5xl font-black">Architectural Showcase</h2>
+                </div>
+                <div class="mt-4 md:mt-0 text-slate-400 font-medium">Over 50+ successful deployments worldwide</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group relative bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden" data-aos="fade-up">
+                    <div class="h-80 bg-gradient-to-br from-indigo-900 to-purple-950 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <i class="fa-solid fa-cart-shopping text-7xl text-purple-500/40 group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">Shopify Plus</span>
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">UX Design</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-white">Nova Threads Global E-store</h3>
+                        <p class="text-slate-400 text-sm mb-6">Engineered a highly sophisticated headless e-commerce store capable of handling multi-currency global checkouts with server performance rating of 98% mobile layouts.</p>
+                        <a href="#" class="inline-flex items-center text-blue-400 font-bold hover:text-blue-300">Explore Deployment <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div class="group relative bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-80 bg-gradient-to-br from-blue-900 to-cyan-950 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <i class="fa-solid fa-chart-line text-7xl text-blue-500/40 group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">React JS</span>
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">Tailwind</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-white">Vortex SaaS Enterprise Dashboard</h3>
+                        <p class="text-slate-400 text-sm mb-6">Designed an operational modular control room interface processing high-frequency data structures, completely custom UI components, built from wireframes.</p>
+                        <a href="#" class="inline-flex items-center text-blue-400 font-bold hover:text-blue-300">Explore Deployment <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-32 bg-[#060a12] border-y border-slate-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-pink-400 font-mono text-sm tracking-widest block mb-2">ENDORSEMENTS</span>
+                <h2 class="text-4xl font-black">What Global Clients Say</h2>
+            </div>
+            
+            <div class="swiper mySwiper" data-aos="zoom-in">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide bg-slate-900 border border-slate-800 rounded-2xl p-8 md:p-12">
+                        <i class="fa-solid fa-quote-left text-4xl text-blue-500 mb-6 block"></i>
+                        <p class="text-lg md:text-xl text-slate-300 italic mb-6">"Kartik's skill with Shopify setups is exceptional. He migrated our entire active enterprise infrastructure without a single second of store downtime."</p>
+                        <div>
+                            <strong class="text-white block text-lg">Sarah Jenkins</strong>
+                            <span class="text-sm text-slate-500">COO, Elite-Wear Inc. (USA)</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide bg-slate-900 border border-slate-800 rounded-2xl p-8 md:p-12">
+                        <i class="fa-solid fa-quote-left text-4xl text-purple-500 mb-6 block"></i>
+                        <p class="text-lg md:text-xl text-slate-300 italic mb-6">"He redesigned our dynamic custom real-estate engine using pristine clean codes. Absolute expert in handling servers and hosting protocols."</p>
+                        <div>
+                            <strong class="text-white block text-lg">Marcus Vance</strong>
+                            <span class="text-sm text-slate-500">Founder, Apex Properties</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination !bottom-[-2px]"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faqs" class="py-32 bg-[#090d16]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden" data-aos="fade-up">
+                    <button class="w-full text-left px-6 py-5 font-bold text-lg flex justify-between items-center outline-none" onclick="toggleFaq(this)">
+                        <span>Do you handle complex live-server website migrations?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-slate-400 text-sm">
+                        <p class="pb-5">Yes, I specialize in clean setups and zero-downtime database and asset migrations across AWS, cPanel, and dedicated servers.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <button class="w-full text-left px-6 py-5 font-bold text-lg flex justify-between items-center outline-none" onclick="toggleFaq(this)">
+                        <span>Can you code specialized interactive elements from Photoshop drafts?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-slate-400 text-sm">
+                        <p class="pb-5">Absolutely. I map UI element hierarchies accurately from PSD mockups directly to pixel-perfect layouts using structural Tailwind CSS setups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 bg-[#060a12] relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">Let's build a tech solution together</h2>
+                    <p class="text-slate-400 mb-8">Drop your requirements or active wireframes, I'll return with architectural estimations within 12 business hours.</p>
+                    
+                    <div class="space-y-4 font-medium">
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-envelope text-blue-500 text-xl"></i><span>hello@kartiksaini.dev</span></div>
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-location-dot text-purple-500 text-xl"></i><span>India (Available Worldwide)</span></div>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-8" data-aos="zoom-in">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request submitted.');">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div><input type="text" placeholder="Name" class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition" required></div>
+                            <div><input type="email" placeholder="Business Email" class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition" required></div>
+                        </div>
+                        <div><input type="text" placeholder="Project Budget Range" class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition"></div>
+                        <div><textarea rows="4" placeholder="Brief project specifications..." class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition" required></textarea></div>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-4 rounded-xl font-bold text-sm shadow-xl hover:opacity-90 transition">Initialize Project Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#090d16] py-12 border-t border-slate-900/80 text-center text-sm text-slate-500">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <p>&copy; 2026 Kartik Saini. Built professionally with ultra performance parameters.</p>
+            <div class="flex gap-6 text-xl">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Animations setup
+        AOS.init({ duration: 1000, once: true });
+
+        // Testimonial 3D Slider setup
+        new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            autoplay: { delay: 4000, disableOnInteraction: false }
+        });
+
+        // FAQ Toggle Logic
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Particle System Background Logic
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#1e3a8a", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false } }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartik Saini | Senior Frontend Developer & CMS Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { bg: '#090d16', card: '#111827', primary: '#3b82f6', accent: '#a855f7' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa, #c084fc, #f472b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .custom-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body class="bg-[#090d16] text-slate-100 font-sans overflow-x-hidden selection:bg-purple-500 selection:text-white">
+
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#090d16]/70 custom-blur border-b border-slate-800/60">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="text-2xl font-black tracking-tighter uppercase">
+                Kartik<span class="text-blue-500">.</span>Saini
+            </a>
+            <nav class="hidden lg:flex items-center space-x-8 font-medium text-sm text-slate-400">
+                <a href="#home" class="hover:text-white transition duration-300">Home</a>
+                <a href="#experience" class="hover:text-white transition duration-300">Experience</a>
+                <a href="#services" class="hover:text-white transition duration-300">Services</a>
+                <a href="#skills" class="hover:text-white transition duration-300">Skills</a>
+                <a href="#projects" class="hover:text-white transition duration-300">Portfolio</a>
+                <a href="#testimonials" class="hover:text-white transition duration-300">Reviews</a>
+                <a href="#faqs" class="hover:text-white transition duration-300">FAQs</a>
+            </nav>
+            <div class="hidden lg:block">
+                <a href="#contact" class="bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold text-sm px-6 py-3 rounded-xl hover:opacity-90 shadow-lg shadow-blue-500/10 transition">
+                    Hire Developer
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="min-h-screen relative flex items-center justify-center pt-20 overflow-hidden">
+        <div id="particles-js"></div>
+        <div class="max-w-5xl mx-auto px-6 text-center z-10 pointer-events-auto">
+            <div data-aos="fade-down" class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 rounded-full px-4 py-1.5 text-xs text-blue-400 font-mono mb-6">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                Available for Global Remote Work
+            </div>
+            <h1 data-aos="fade-up" data-aos-delay="100" class="text-5xl md:text-8xl font-black tracking-tight mb-8 leading-none">
+                Building Modern <br><span class="gradient-text">Digital Masterpieces</span>
+            </h1>
+            <p data-aos="fade-up" data-aos-delay="200" class="text-lg md:text-xl text-slate-400 max-w-3xl mx-auto mb-10 leading-relaxed">
+                Hi, I'm Kartik. A <strong>Frontend Engineer with 3+ years of battle-tested experience</strong> converting complex logic into super-fast React, WordPress, and Shopify solutions.
+            </p>
+            <div data-aos="zoom-in" data-aos-delay="300" class="flex flex-wrap justify-center gap-4">
+                <a href="#projects" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl shadow-blue-600/20 transition transform hover:-translate-y-1">Explore Full Portfolio</a>
+                <a href="#contact" class="bg-slate-900 border border-slate-800 hover:border-slate-700 text-white font-bold px-8 py-4 rounded-xl transition transform hover:-translate-y-1">Get Free Strategy Call</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-32 bg-[#060a12] border-t border-slate-900">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20" data-aos="fade-up">
+                <span class="text-purple-400 font-mono text-sm tracking-wider uppercase block mb-3">My Journey</span>
+                <h2 class="text-4xl md:text-5xl font-black">3 Years of Industry <span class="gradient-text">Impact</span></h2>
+            </div>
+            
+            <div class="relative border-l-2 border-slate-800 max-w-3xl mx-auto pl-8 space-y-12">
+                <div class="relative" data-aos="fade-left">
+                    <div class="absolute -left-[41px] top-0 bg-blue-600 w-5 h-5 rounded-full border-4 border-[#060a12]"></div>
+                    <span class="text-sm font-mono text-blue-400">2024 - Present</span>
+                    <h3 class="text-2xl font-bold mt-1 text-white">Senior Frontend & CMS Lead</h3>
+                    <p class="text-slate-400 mt-2">Managing large-scale enterprise projects. Optimized production architectures using React.js and established scalable e-commerce infrastructures on Shopify Plus.</p>
+                </div>
+                <div class="relative" data-aos="fade-left" data-aos-delay="100">
+                    <div class="absolute -left-[41px] top-0 bg-purple-600 w-5 h-5 rounded-full border-4 border-[#060a12]"></div>
+                    <span class="text-sm font-mono text-purple-400">2023 - 2024</span>
+                    <h3 class="text-2xl font-bold mt-1 text-white">Full-Stack Web Consultant</h3>
+                    <p class="text-slate-400 mt-2">Specialized in custom WordPress layouts, WooCommerce engines, server administration, and hosting optimization platforms (AWS/Cpanel).</p>
+                </div>
+                <div class="relative" data-aos="fade-left" data-aos-delay="200">
+                    <div class="absolute -left-[41px] top-0 bg-pink-600 w-5 h-5 rounded-full border-4 border-[#060a12]"></div>
+                    <span class="text-sm font-mono text-pink-400">2022 - 2023</span>
+                    <h3 class="text-2xl font-bold mt-1 text-white">UI Developer & Graphic Expert</h3>
+                    <p class="text-slate-400 mt-2">Started with pixel-perfect responsive web designs using HTML5, CSS3, Bootstrap, and UI asset designing inside Adobe Photoshop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-32 bg-[#090d16]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center mb-20">
+                <div class="lg:col-span-1" data-aos="fade-right">
+                    <span class="text-blue-400 font-mono text-sm uppercase block mb-3">Capabilities</span>
+                    <h2 class="text-4xl font-black mb-6">Solutions that scale your business.</h2>
+                    <p class="text-slate-400">I bridge the gap between design and high-performance server architectures.</p>
+                </div>
+                <div class="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up">
+                        <i class="fa-brands fa-react text-blue-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">React Web Apps</h3>
+                        <p class="text-slate-400 text-sm">State management, reusable modular architecture, and single-page apps execution.</p>
+                    </div>
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                        <i class="fa-brands fa-shopify text-green-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">E-Commerce Ecosystems</h3>
+                        <p class="text-slate-400 text-sm">High-converting shopify storefronts, dynamic liquid engineering, payment setup.</p>
+                    </div>
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fa-brands fa-wordpress text-sky-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">CMS Architecture</h3>
+                        <p class="text-slate-400 text-sm">Custom theme setups, complex multisite configurations, heavy plugin optimizations.</p>
+                    </div>
+                    <div class="bg-slate-900/60 border border-slate-800 p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fa-solid fa-server text-purple-400 text-3xl mb-4"></i>
+                        <h3 class="text-xl font-bold mb-2">Hosting & Migration</h3>
+                        <p class="text-slate-400 text-sm">Server controls, Domain routing, SSL protocols management, zero-downtime migrations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-24 bg-[#060a12]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black">Technical <span class="gradient-text">Proficiency</span></h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-blue-500 transition" data-aos="zoom-in"><i class="fa-brands fa-html5 text-orange-500 text-3xl"></i><strong>HTML5 / CSS3</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-purple-500 transition" data-aos="zoom-in" data-aos-delay="500"><i class="fa-brands fa-bootstrap text-purple-500 text-3xl"></i><strong>Bootstrap / Tailwind</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-cyan-400 transition" data-aos="zoom-in" data-aos-delay="1500"><i class="fa-brands fa-react text-cyan-400 text-3xl"></i><strong>React JS</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-blue-400 transition" data-aos="zoom-in" data-aos-delay="200"><i class="fa-brands fa-wordpress text-blue-400 text-3xl"></i><strong>WordPress</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-green-500 transition" data-aos="zoom-in" data-aos-delay="250"><i class="fa-brands fa-shopify text-green-500 text-3xl"></i><strong>Shopify Stores</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-blue-500 transition" data-aos="zoom-in" data-aos-delay="300"><i class="fa-solid fa-palette text-blue-400 text-3xl"></i><strong>Photoshop Design</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-indigo-400 transition" data-aos="zoom-in" data-aos-delay="350"><i class="fa-solid fa-server text-indigo-400 text-3xl"></i><strong>Hosting Handling</strong></div>
+                <div class="bg-slate-900/40 border border-slate-800/80 p-6 rounded-xl flex items-center gap-4 hover:border-yellow-400 transition" data-aos="zoom-in" data-aos-delay="400"><i class="fa-solid fa-gauge-high text-yellow-400 text-3xl"></i><strong>Core Optimization</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-32 bg-[#090d16]">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-20" data-aos="fade-up">
+                <div>
+                    <span class="text-blue-400 font-mono text-sm uppercase block mb-3">Case Studies</span>
+                    <h2 class="text-4xl md:text-5xl font-black">Architectural Showcase</h2>
+                </div>
+                <div class="mt-4 md:mt-0 text-slate-400 font-medium">Over 50+ successful deployments worldwide</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group relative bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden" data-aos="fade-up">
+                    <div class="h-80 bg-gradient-to-br from-indigo-900 to-purple-950 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <i class="fa-solid fa-cart-shopping text-7xl text-purple-500/40 group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">Shopify Plus</span>
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">UX Design</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-white">Nova Threads Global E-store</h3>
+                        <p class="text-slate-400 text-sm mb-6">Engineered a highly sophisticated headless e-commerce store capable of handling multi-currency global checkouts with server performance rating of 98% mobile layouts.</p>
+                        <a href="#" class="inline-flex items-center text-blue-400 font-bold hover:text-blue-300">Explore Deployment <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+
+                <div class="group relative bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <div class="h-80 bg-gradient-to-br from-blue-900 to-cyan-950 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+                        <i class="fa-solid fa-chart-line text-7xl text-blue-500/40 group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="flex gap-2 mb-4">
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">React JS</span>
+                            <span class="bg-slate-800 text-xs px-3 py-1 rounded-full text-slate-300 font-mono">Tailwind</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3 text-white">Vortex SaaS Enterprise Dashboard</h3>
+                        <p class="text-slate-400 text-sm mb-6">Designed an operational modular control room interface processing high-frequency data structures, completely custom UI components, built from wireframes.</p>
+                        <a href="#" class="inline-flex items-center text-blue-400 font-bold hover:text-blue-300">Explore Deployment <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-xs"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-32 bg-[#060a12] border-y border-slate-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <span class="text-pink-400 font-mono text-sm tracking-widest block mb-2">ENDORSEMENTS</span>
+                <h2 class="text-4xl font-black">What Global Clients Say</h2>
+            </div>
+            
+            <div class="swiper mySwiper" data-aos="zoom-in">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide bg-slate-900 border border-slate-800 rounded-2xl p-8 md:p-12">
+                        <i class="fa-solid fa-quote-left text-4xl text-blue-500 mb-6 block"></i>
+                        <p class="text-lg md:text-xl text-slate-300 italic mb-6">"Kartik's skill with Shopify setups is exceptional. He migrated our entire active enterprise infrastructure without a single second of store downtime."</p>
+                        <div>
+                            <strong class="text-white block text-lg">Sarah Jenkins</strong>
+                            <span class="text-sm text-slate-500">COO, Elite-Wear Inc. (USA)</span>
+                        </div>
+                    </div>
+                    <div class="swiper-slide bg-slate-900 border border-slate-800 rounded-2xl p-8 md:p-12">
+                        <i class="fa-solid fa-quote-left text-4xl text-purple-500 mb-6 block"></i>
+                        <p class="text-lg md:text-xl text-slate-300 italic mb-6">"He redesigned our dynamic custom real-estate engine using pristine clean codes. Absolute expert in handling servers and hosting protocols."</p>
+                        <div>
+                            <strong class="text-white block text-lg">Marcus Vance</strong>
+                            <span class="text-sm text-slate-500">Founder, Apex Properties</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination !bottom-[-2px]"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faqs" class="py-32 bg-[#090d16]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl font-black">Frequently Asked <span class="gradient-text">Questions</span></h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden" data-aos="fade-up">
+                    <button class="w-full text-left px-6 py-5 font-bold text-lg flex justify-between items-center outline-none" onclick="toggleFaq(this)">
+                        <span>Do you handle complex live-server website migrations?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-slate-400 text-sm">
+                        <p class="pb-5">Yes, I specialize in clean setups and zero-downtime database and asset migrations across AWS, cPanel, and dedicated servers.</p>
+                    </div>
+                </div>
+                <div class="bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden" data-aos="fade-up" data-aos-delay="100">
+                    <button class="w-full text-left px-6 py-5 font-bold text-lg flex justify-between items-center outline-none" onclick="toggleFaq(this)">
+                        <span>Can you code specialized interactive elements from Photoshop drafts?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out px-6 text-slate-400 text-sm">
+                        <p class="pb-5">Absolutely. I map UI element hierarchies accurately from PSD mockups directly to pixel-perfect layouts using structural Tailwind CSS setups.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 bg-[#060a12] relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div data-aos="fade-right">
+                    <h2 class="text-4xl md:text-5xl font-black mb-6">Let's build a tech solution together</h2>
+                    <p class="text-slate-400 mb-8">Drop your requirements or active wireframes, I'll return with architectural estimations within 12 business hours.</p>
+                    
+                    <div class="space-y-4 font-medium">
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-envelope text-blue-500 text-xl"></i><span>hello@kartiksaini.dev</span></div>
+                        <div class="flex items-center gap-4"><i class="fa-solid fa-location-dot text-purple-500 text-xl"></i><span>India (Available Worldwide)</span></div>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-900/80 border border-slate-800 rounded-3xl p-8" data-aos="zoom-in">
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Request submitted.');">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div><input type="text" placeholder="Name" class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition" required></div>
+                            <div><input type="email" placeholder="Business Email" class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition" required></div>
+                        </div>
+                        <div><input type="text" placeholder="Project Budget Range" class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition"></div>
+                        <div><textarea rows="4" placeholder="Brief project specifications..." class="w-full bg-[#060a12] border border-slate-800 rounded-xl px-4 py-4 text-sm focus:outline-none focus:border-blue-500 transition" required></textarea></div>
+                        <button class="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-4 rounded-xl font-bold text-sm shadow-xl hover:opacity-90 transition">Initialize Project Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#090d16] py-12 border-t border-slate-900/80 text-center text-sm text-slate-500">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-6">
+            <p>&copy; 2026 Kartik Saini. Built professionally with ultra performance parameters.</p>
+            <div class="flex gap-6 text-xl">
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-white transition"><i class="fa-brands fa-linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    
+    <script>
+        // Animations setup
+        AOS.init({ duration: 1000, once: true });
+
+        // Testimonial 3D Slider setup
+        new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            pagination: { el: ".swiper-pagination", clickable: true },
+            autoplay: { delay: 4000, disableOnInteraction: false }
+        });
+
+        // FAQ Toggle Logic
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Particle System Background Logic
+        particlesJS('particles-js', {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.3, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#1e3a8a", "opacity": 0.2, "width": 1 },
+                "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "straight": false, "out_mode": "out" }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": false } }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
