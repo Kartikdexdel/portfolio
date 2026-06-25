@@ -2,18 +2,148 @@
 <html>
 <head>
   <title>Kartik Portfolio</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: #020617;
+      position: sticky;
+      top: 0;
+    }
+
+    nav h2 {
+      color: #38bdf8;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 8%;
+    }
+
+    .hero h1 {
+      font-size: 55px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #38bdf8;
+    }
+
+    .hero p {
+      font-size: 22px;
+      color: #cbd5e1;
+      margin-bottom: 25px;
+    }
+
+    .btn {
+      width: fit-content;
+      background: #38bdf8;
+      color: #020617;
+      padding: 12px 25px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    section {
+      padding: 70px 8%;
+    }
+
+    h2 {
+      font-size: 35px;
+      margin-bottom: 20px;
+      color: #38bdf8;
+    }
+
+    .card {
+      background: #1e293b;
+      padding: 25px;
+      border-radius: 10px;
+      margin: 15px 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #020617;
+      color: #94a3b8;
+    }
+  </style>
 </head>
 <body>
-  <h1>Hi, I am Kartik</h1>
-  <p>Welcome to my portfolio website.</p>
 
-  <h2>About Me</h2>
-  <p>Main coding seekh raha hoon.</p>
+  <nav>
+    <h2>Kartik</h2>
+    <div>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-  <h2>Projects</h2>
-  <p>Yahan mere projects honge.</p>
+  <div class="hero">
+    <h1>Hi, I am <span>Kartik</span></h1>
+    <p>Web Developer | Student | Coding Learner</p>
+    <a href="#contact" class="btn">Contact Me</a>
+  </div>
 
-  <h2>Contact</h2>
-  <p>Email: yourmail@gmail.com</p>
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="card">
+      <p>
+        Main coding seekh raha hoon aur apna portfolio website bana raha hoon.
+        Mujhe HTML, CSS aur web development me interest hai.
+      </p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="card">
+      <h3>Portfolio Website</h3>
+      <p>Ye mera first portfolio website hai jo GitHub Pages par live hai.</p>
+    </div>
+
+    <div class="card">
+      <h3>Coming Soon</h3>
+      <p>Yahan main apne naye projects add karunga.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <div class="card">
+      <p>Email: yourmail@gmail.com</p>
+      <p>GitHub: Kartikdexdel</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Kartik. All rights reserved.</p>
+  </footer>
+
 </body>
 </html>
