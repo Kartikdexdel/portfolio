@@ -1,149 +1,613 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Kartik Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kartik | Portfolio</title>
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0f172a;
-      color: white;
+      background: #050816;
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(139, 92, 246, 0.2), transparent 30%),
+        radial-gradient(circle at 50% 90%, rgba(236, 72, 153, 0.15), transparent 35%);
+      z-index: -2;
+    }
+
+    .bg-animation {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(45deg, #00f5ff, #8b5cf6, #ec4899);
+      filter: blur(110px);
+      opacity: 0.35;
+      border-radius: 50%;
+      animation: moveBg 12s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    @keyframes moveBg {
+      0% {
+        top: 10%;
+        left: 5%;
+      }
+      100% {
+        top: 45%;
+        left: 65%;
+      }
     }
 
     nav {
+      width: 100%;
+      padding: 22px 8%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 8%;
-      background: #020617;
-      position: sticky;
+      position: fixed;
       top: 0;
+      left: 0;
+      z-index: 99;
+      background: rgba(5, 8, 22, 0.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    nav h2 {
-      color: #38bdf8;
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    nav a {
-      color: white;
+    .logo span {
+      color: #00f5ff;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    nav ul li a {
+      color: #d1d5db;
       text-decoration: none;
-      margin-left: 20px;
+      font-size: 15px;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00f5ff;
     }
 
     .hero {
-      min-height: 90vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 0 8%;
+      min-height: 100vh;
+      padding: 140px 8% 70px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 50px;
     }
 
-    .hero h1 {
-      font-size: 55px;
-      margin-bottom: 15px;
+    .hero-content h4 {
+      color: #00f5ff;
+      font-size: 20px;
+      margin-bottom: 14px;
     }
 
-    .hero h1 span {
-      color: #38bdf8;
+    .hero-content h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      margin-bottom: 18px;
     }
 
-    .hero p {
-      font-size: 22px;
-      color: #cbd5e1;
+    .hero-content h1 span {
+      background: linear-gradient(90deg, #00f5ff, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .typing {
+      font-size: 25px;
+      color: #d1d5db;
       margin-bottom: 25px;
+      min-height: 36px;
+    }
+
+    .typing span {
+      color: #00f5ff;
+      border-right: 2px solid #00f5ff;
+      padding-right: 5px;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+
+    .hero-content p {
+      color: #a1a1aa;
+      max-width: 620px;
+      line-height: 1.8;
+      font-size: 17px;
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     .btn {
-      width: fit-content;
-      background: #38bdf8;
-      color: #020617;
-      padding: 12px 25px;
-      border-radius: 6px;
+      padding: 14px 28px;
+      border-radius: 40px;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 700;
+      transition: 0.35s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, #00f5ff, #8b5cf6);
+      color: white;
+      box-shadow: 0 0 25px rgba(0,245,255,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 35px rgba(0,245,255,0.65);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .btn-outline:hover {
+      border-color: #00f5ff;
+      color: #00f5ff;
+      transform: translateY(-5px);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .profile-card {
+      width: 330px;
+      height: 430px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      animation: float 4s ease-in-out infinite;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      background: linear-gradient(#00f5ff, #8b5cf6);
+      border-radius: 50%;
+      top: -50px;
+      right: -50px;
+      opacity: 0.55;
+    }
+
+    .profile-card::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(#ec4899, #8b5cf6);
+      border-radius: 50%;
+      bottom: -50px;
+      left: -50px;
+      opacity: 0.4;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-22px);
+      }
+    }
+
+    .avatar {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #00f5ff, #8b5cf6, #ec4899);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 62px;
+      font-weight: 900;
+      z-index: 2;
+      margin-bottom: 25px;
+      box-shadow: 0 0 35px rgba(0,245,255,0.45);
+    }
+
+    .profile-card h2,
+    .profile-card p {
+      z-index: 2;
+    }
+
+    .profile-card h2 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .profile-card p {
+      color: #d1d5db;
     }
 
     section {
-      padding: 70px 8%;
+      padding: 95px 8%;
     }
 
-    h2 {
-      font-size: 35px;
-      margin-bottom: 20px;
-      color: #38bdf8;
+    .section-title {
+      text-align: center;
+      margin-bottom: 55px;
     }
 
-    .card {
-      background: #1e293b;
-      padding: 25px;
-      border-radius: 10px;
-      margin: 15px 0;
+    .section-title h2 {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 span {
+      color: #00f5ff;
+    }
+
+    .section-title p {
+      color: #a1a1aa;
+    }
+
+    .about-box {
+      max-width: 1000px;
+      margin: auto;
+      padding: 35px;
+      border-radius: 25px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+      color: #d1d5db;
+      line-height: 1.9;
+      font-size: 17px;
+    }
+
+    .skills-grid,
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .skill-card,
+    .project-card,
+    .contact-card {
+      padding: 30px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      backdrop-filter: blur(18px);
+      transition: 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .contact-card:hover {
+      transform: translateY(-12px);
+      border-color: #00f5ff;
+      box-shadow: 0 20px 50px rgba(0,245,255,0.12);
+    }
+
+    .skill-card h3,
+    .project-card h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+      color: #00f5ff;
+    }
+
+    .skill-card p,
+    .project-card p,
+    .contact-card p {
+      color: #b7b7c5;
+      line-height: 1.7;
+    }
+
+    .project-card a {
+      display: inline-block;
+      margin-top: 18px;
+      color: #00f5ff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .contact-wrapper {
+      max-width: 760px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact-card {
+      margin-top: 20px;
     }
 
     footer {
       text-align: center;
-      padding: 25px;
-      background: #020617;
-      color: #94a3b8;
+      padding: 28px;
+      color: #a1a1aa;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.25);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(45px);
+      transition: 0.9s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 900px) {
+      nav {
+        padding: 18px 6%;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 130px;
+      }
+
+      .hero-content h1 {
+        font-size: 45px;
+      }
+
+      .hero-content p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .skills-grid,
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .profile-card {
+        width: 290px;
+        height: 380px;
+      }
     }
   </style>
 </head>
+
 <body>
 
+  <div class="bg-animation"></div>
+
   <nav>
-    <h2>Kartik</h2>
-    <div>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </div>
+    <div class="logo">Kartik<span>.</span></div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <div class="hero">
-    <h1>Hi, I am <span>Kartik</span></h1>
-    <p>Web Developer | Student | Coding Learner</p>
-    <a href="#contact" class="btn">Contact Me</a>
-  </div>
+  <section class="hero" id="home">
+    <div class="hero-content reveal">
+      <h4>Hello, I'm</h4>
+      <h1>Kartik <span>Developer</span></h1>
+
+      <div class="typing">
+        I am a <span id="typed-text"></span>
+      </div>
+
+      <p>
+        I create modern, responsive and animated websites using HTML, CSS and JavaScript.
+        This is my personal portfolio where I showcase my skills, projects and learning journey.
+      </p>
+
+      <div class="buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal">
+      <div class="profile-card">
+        <div class="avatar">K</div>
+        <h2>Kartik</h2>
+        <p>Web Developer</p>
+      </div>
+    </div>
+  </section>
 
   <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>
-        Main coding seekh raha hoon aur apna portfolio website bana raha hoon.
-        Mujhe HTML, CSS aur web development me interest hai.
-      </p>
+    <div class="section-title reveal">
+      <h2>About <span>Me</span></h2>
+      <p>Little information about me</p>
+    </div>
+
+    <div class="about-box reveal">
+      Main ek passionate web developer hoon jo HTML, CSS aur JavaScript seekh raha hoon.
+      Mujhe clean design, smooth animations aur professional websites banana pasand hai.
+      Mera goal hai ki main real-world projects banaun aur apni skills ko improve karun.
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-title reveal">
+      <h2>My <span>Skills</span></h2>
+      <p>Technologies I am learning</p>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <h3>HTML</h3>
+        <p>Clean structure, semantic tags and SEO-friendly webpage layout.</p>
+      </div>
+
+      <div class="skill-card reveal">
+        <h3>CSS</h3>
+        <p>Modern layouts, animations, responsive design and glassmorphism UI.</p>
+      </div>
+
+      <div class="skill-card reveal">
+        <h3>JavaScript</h3>
+        <p>Interactive websites, dynamic effects and smooth user experience.</p>
+      </div>
     </div>
   </section>
 
   <section id="projects">
-    <h2>My Projects</h2>
-    <div class="card">
-      <h3>Portfolio Website</h3>
-      <p>Ye mera first portfolio website hai jo GitHub Pages par live hai.</p>
+    <div class="section-title reveal">
+      <h2>My <span>Projects</span></h2>
+      <p>Some work created by me</p>
     </div>
 
-    <div class="card">
-      <h3>Coming Soon</h3>
-      <p>Yahan main apne naye projects add karunga.</p>
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <h3>Portfolio Website</h3>
+        <p>A modern animated portfolio website hosted on GitHub Pages.</p>
+        <a href="#">View Project →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <h3>Landing Page</h3>
+        <p>A responsive business landing page with clean UI and animations.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
+
+      <div class="project-card reveal">
+        <h3>JavaScript App</h3>
+        <p>A small JavaScript project to practice logic and DOM manipulation.</p>
+        <a href="#">Coming Soon →</a>
+      </div>
     </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Me</h2>
-    <div class="card">
-      <p>Email: yourmail@gmail.com</p>
-      <p>GitHub: Kartikdexdel</p>
+    <div class="section-title reveal">
+      <h2>Contact <span>Me</span></h2>
+      <p>Let's connect</p>
+    </div>
+
+    <div class="contact-wrapper reveal">
+      <div class="contact-card">
+        <p><strong>Email:</strong> yourmail@gmail.com</p>
+        <p><strong>GitHub:</strong> Kartikdexdel</p>
+        <p><strong>Location:</strong> India</p>
+      </div>
     </div>
   </section>
 
   <footer>
-    <p>© 2026 Kartik. All rights reserved.</p>
+    <p>© 2026 Kartik. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    const words = ["Web Developer", "Frontend Learner", "Creative Coder", "UI Designer"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typedText = document.getElementById("typed-text");
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      if (isDeleting) {
+        typedText.textContent = currentWord.substring(0, charIndex--);
+      } else {
+        typedText.textContent = currentWord.substring(0, charIndex++);
+      }
+
+      if (!isDeleting && charIndex === currentWord.length + 1) {
+        isDeleting = true;
+        setTimeout(typeEffect, 1200);
+        return;
+      }
+
+      if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+
+      setTimeout(typeEffect, isDeleting ? 70 : 120);
+    }
+
+    typeEffect();
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      reveals.forEach((item) => {
+        const windowHeight = window.innerHeight;
+        const revealTop = item.getBoundingClientRect().top;
+        const revealPoint = 120;
+
+        if (revealTop < windowHeight - revealPoint) {
+          item.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    window.addEventListener("load", revealOnScroll);
+  </script>
 
 </body>
 </html>
